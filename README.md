@@ -1,10 +1,10 @@
-# Scroll & Ink: a parchment look and feel for Swing
+# Ink: a parchment look and feel for Swing
 
 An experimental Java Swing look and feel that tries to look like something you could physically make: paper and ink.
 
 The whole window is one sheet of parchment. Controls are pen scribbles on it: sketched boxes, a fill-in line for a text field, a quill tick for a checkbox, a highlighter swipe for a selection. Scroll panes, tab pages, popup menus and tooltips are torn slips of paper lying on the sheet. The look and feel can also draw the window itself, with a torn outline, a hand-lettered title and pen-drawn window buttons.
 
-![Scroll & Ink: the whole window is one torn sheet of parchment](docs/images/ink-live-window.png)
+![Ink: the whole window is one torn sheet of parchment](docs/images/ink-live-window.png)
 
 Plain Swing, with no dependencies beyond the JDK.
 
@@ -53,7 +53,7 @@ JFrame.setDefaultLookAndFeelDecorated(true);
 JDialog.setDefaultLookAndFeelDecorated(true);
 ```
 
-Compile `src/inklaf` into your project; `src/demo` is only the demo. `./build.sh` compiles everything into `out/`. The look and feel's display name is "Scroll & Ink"; the package and class names are `inklaf` and `InkLookAndFeel`.
+Compile `src/inklaf` into your project; `src/demo` is only the demo. `./build.sh` compiles everything into `out/`. The package is `inklaf`, the class `InkLookAndFeel`.
 
 Switches for the window frame:
 

@@ -39,7 +39,7 @@ public class RepaintTrailCheck {
 
     public static void main(String[] args) throws Exception {
         int[] failures = {0};
-        String[][] lafs = {{"Scroll & Ink", "inklaf.InkLookAndFeel"}};
+        String[][] lafs = {{"Ink", "inklaf.InkLookAndFeel"}};
         SwingUtilities.invokeAndWait(() -> {
             try {
                 for (String[] laf : lafs) {

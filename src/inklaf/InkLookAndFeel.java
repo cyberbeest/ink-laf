@@ -25,7 +25,7 @@ public class InkLookAndFeel extends MetalLookAndFeel {
         private final ColorUIResource p1 = new ColorUIResource(0x2b1b10), p2 = new ColorUIResource(0x8a6a3a), p3 = new ColorUIResource(0xc9a566),
                 s1 = new ColorUIResource(0x6b4a2a), s2 = new ColorUIResource(0xc9a566), s3 = new ColorUIResource(InkPaper.BASE);
         private final FontUIResource body = new FontUIResource(hand(16, Font.PLAIN)), bold = new FontUIResource(hand(16, Font.BOLD));
-        @Override public String getName() { return "Scroll & Ink"; }
+        @Override public String getName() { return "Ink"; }
         @Override protected ColorUIResource getPrimary1() { return p1; }
         @Override protected ColorUIResource getPrimary2() { return p2; }
         @Override protected ColorUIResource getPrimary3() { return p3; }
@@ -43,8 +43,8 @@ public class InkLookAndFeel extends MetalLookAndFeel {
 
     public InkLookAndFeel() { MetalLookAndFeel.setCurrentTheme(new Theme()); }
 
-    @Override public String getName() { return "Scroll & Ink"; }
-    @Override public String getID() { return "ScrollAndInk"; }
+    @Override public String getName() { return "Ink"; }
+    @Override public String getID() { return "Ink"; }
     @Override public String getDescription() { return "Pen scribbles on a sheet of parchment"; }
     @Override public boolean isNativeLookAndFeel() { return false; }
     @Override public boolean isSupportedLookAndFeel() { return true; }

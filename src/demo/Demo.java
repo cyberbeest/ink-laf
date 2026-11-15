@@ -10,14 +10,14 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import inklaf.InkLookAndFeel;
 
 /**
- * SwingSet-style demo for the Scroll & Ink look and feel, with Metal and Nimbus for comparison.
+ * SwingSet-style demo for the Ink look and feel, with Metal and Nimbus for comparison.
  *   java demo.Demo                 interactive
  *   java demo.Demo --shot DIR      headless: one PNG per tab into DIR
  */
 public class Demo {
     /** key (command line), label (dropdown), class. */
     static final String[][] LAFS = {
-        {"ink", "Scroll & Ink", InkLookAndFeel.class.getName()},
+        {"ink", "Ink", InkLookAndFeel.class.getName()},
         {"metal", "Metal", "javax.swing.plaf.metal.MetalLookAndFeel"},
         {"nimbus", "Nimbus", "javax.swing.plaf.nimbus.NimbusLookAndFeel"},
     };
@@ -281,7 +281,7 @@ public class Demo {
         boolean decorated = start.equalsIgnoreCase("Ink");     // Ink draws its own window frame
         JFrame.setDefaultLookAndFeelDecorated(decorated);
         JDialog.setDefaultLookAndFeelDecorated(decorated);
-        JFrame f = new JFrame("Scroll & Ink — Look & Feel Demo");
+        JFrame f = new JFrame("Ink — Look & Feel Demo");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JComboBox<String> lafBox = new JComboBox<>();
         for (String[] l : LAFS) lafBox.addItem(l[1]);
