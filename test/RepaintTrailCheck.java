@@ -5,7 +5,7 @@ import javax.swing.*;
 
 /**
  * Moving thumbs must not leave trails. Swing repaints only the union of the old and new thumb rectangles, so the
- * result of that partial repaint has to equal a full repaint. Checked for scrollbars and sliders of both look and feels.
+ * result of that partial repaint has to equal a full repaint. Checked for scrollbars and sliders .
  * Exits with status 1 if any pixel differs noticeably.
  */
 public class RepaintTrailCheck {
@@ -39,7 +39,7 @@ public class RepaintTrailCheck {
 
     public static void main(String[] args) throws Exception {
         int[] failures = {0};
-        String[][] lafs = {{"Scroll", "scrolllaf.ScrollLookAndFeel"}, {"Ink", "inklaf.InkLookAndFeel"}};
+        String[][] lafs = {{"Scroll & Ink", "inklaf.InkLookAndFeel"}};
         SwingUtilities.invokeAndWait(() -> {
             try {
                 for (String[] laf : lafs) {

@@ -7,19 +7,19 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultMutableTreeNode;
-import scrolllaf.ScrollLookAndFeel;
+import inklaf.InkLookAndFeel;
 
 /**
- * SwingSet-style demo for the Scroll look and feel.
- *   java demo.ScrollSwingSet                 interactive
- *   java demo.ScrollSwingSet --shot DIR      headless: one PNG per tab into DIR
+ * SwingSet-style demo for the Scroll & Ink look and feel, with Metal and Nimbus for comparison.
+ *   java demo.Demo                 interactive
+ *   java demo.Demo --shot DIR      headless: one PNG per tab into DIR
  */
-public class ScrollSwingSet {
+public class Demo {
+    /** key (command line), label (dropdown), class. */
     static final String[][] LAFS = {
-        {"Scroll", ScrollLookAndFeel.class.getName()},
-        {"Metal", "javax.swing.plaf.metal.MetalLookAndFeel"},
-        {"Nimbus", "javax.swing.plaf.nimbus.NimbusLookAndFeel"},
-        {"Ink", "inklaf.InkLookAndFeel"},
+        {"ink", "Scroll & Ink", InkLookAndFeel.class.getName()},
+        {"metal", "Metal", "javax.swing.plaf.metal.MetalLookAndFeel"},
+        {"nimbus", "Nimbus", "javax.swing.plaf.nimbus.NimbusLookAndFeel"},
     };
 
     JTabbedPane tabs;
@@ -284,7 +284,7 @@ public class ScrollSwingSet {
         JFrame f = new JFrame("Scroll & Ink — Look & Feel Demo");
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         JComboBox<String> lafBox = new JComboBox<>();
-        for (String[] l : LAFS) lafBox.addItem(l[0]);
+        for (String[] l : LAFS) lafBox.addItem(l[1]);
         for (int i = 0; i < LAFS.length; i++) if (LAFS[i][0].equalsIgnoreCase(start)) lafBox.setSelectedIndex(i);
         JToolBar bar = new JToolBar();
         bar.setFloatable(false);
@@ -295,11 +295,11 @@ public class ScrollSwingSet {
         f.add(buildContent(), BorderLayout.CENTER);
         tabs.setSelectedIndex(tab);
         lafBox.addActionListener(e -> {
-            String name = (String) lafBox.getSelectedItem();
-            try { UIManager.setLookAndFeel(LAFS[lafBox.getSelectedIndex()][1]); }
+            String name = LAFS[lafBox.getSelectedIndex()][0];
+            try { UIManager.setLookAndFeel(LAFS[lafBox.getSelectedIndex()][2]); }
             catch (Exception ex) { status.setText(ex.toString()); return; }
             // window decorations are fixed when a frame is created, so switching builds a fresh frame
-            new ScrollSwingSet().show(name, f.getBounds(), tabs.getSelectedIndex());
+            new Demo().show(name, f.getBounds(), tabs.getSelectedIndex());
             f.dispose();
         });
         if (bounds != null) f.setBounds(bounds);
@@ -309,11 +309,11 @@ public class ScrollSwingSet {
 
     static void shots(File dir, String key) throws Exception {
         dir.mkdirs();
-        String cls = LAFS[0][1];
-        for (String[] l : LAFS) if (l[0].equalsIgnoreCase(key)) cls = l[1];
+        String cls = LAFS[0][2];
+        for (String[] l : LAFS) if (l[0].equalsIgnoreCase(key)) cls = l[2];
         UIManager.setLookAndFeel(cls);
-        String prefix = key.equalsIgnoreCase("Scroll") ? "" : key.toLowerCase() + "-";
-        ScrollSwingSet app = new ScrollSwingSet();
+        String prefix = key.equalsIgnoreCase("ink") ? "" : key.toLowerCase() + "-";
+        Demo app = new Demo();
         JComponent content = app.buildContent();
         JRootPane host = new JRootPane();   // a real root pane, so root-level painting (e.g. paper) happens
         host.setContentPane(content);
@@ -334,7 +334,7 @@ public class ScrollSwingSet {
     }
 
     static void shotMenus(File dir, String prefix) throws Exception {
-        ScrollSwingSet app = new ScrollSwingSet();
+        Demo app = new Demo();
         JMenuBar mb = app.menuBar();
         JPanel inner = new JPanel(null);
         JRootPane host = new JRootPane();
@@ -375,18 +375,18 @@ public class ScrollSwingSet {
     public static void main(String[] args) throws Exception {
         if (args.length >= 2 && args[0].equals("--shot")) {
             System.setProperty("java.awt.headless", "true");
-            String key = args.length > 2 ? args[2] : "Scroll";
+            String key = args.length > 2 ? args[2] : "ink";
             SwingUtilities.invokeAndWait(() -> { try { shots(new File(args[1]), key); } catch (Exception e) { throw new RuntimeException(e); } });
             return;
         }
-        String start = args.length > 0 ? args[0] : "Scroll";
+        String start = args.length > 0 ? args[0] : "ink";
         SwingUtilities.invokeLater(() -> {
             try {
-                String cls = LAFS[0][1];
-                for (String[] l : LAFS) if (l[0].equalsIgnoreCase(start)) cls = l[1];
+                String cls = LAFS[0][2];
+                for (String[] l : LAFS) if (l[0].equalsIgnoreCase(start)) cls = l[2];
                 UIManager.setLookAndFeel(cls);
             } catch (Exception e) { e.printStackTrace(); }
-            new ScrollSwingSet().show(start);
+            new Demo().show(start);
         });
     }
 }
